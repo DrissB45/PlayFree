@@ -10,14 +10,18 @@ $font-size: 1.3rem;
 
 $primary: #0B091D;
 $secondary: #2DF0BB;
-$light: #FAFAFA;
+$white: #FAFAFA;
 
 
 @import "~bootstrap/scss/bootstrap";
 
+.logo {
+    font-family: 'font-logo';
+}
+
 body {
     background-color: $primary;
-    color: $light;
+    color: $white;
     font-size: $font-size;
     font-family: $font-body;
 }
