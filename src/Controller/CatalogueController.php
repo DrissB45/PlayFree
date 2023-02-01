@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use GMP;
+use App\Entity\Game;
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/catalogue', name: 'catalogue_')]
 class CatalogueController extends AbstractController
@@ -20,7 +23,7 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(GameRepository $gameRepository): Response
     {
         $response = $this->client->request(
             'GET',
@@ -33,12 +36,20 @@ class CatalogueController extends AbstractController
         // $contentType = 'application/json'
         $content = $response->getContent();
         // $content = '{"id":521583, "name":"symfony-docs", ...}'
-        $games = $response->toArray()['results'];
+        $dataGames = $response->toArray()['results'];
         // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
-       /*  var_dump($games); exit(); */
+        
+        foreach ($dataGames as $dataGame) {
+            $game = new Game();
+            $game->setTitle($dataGame['name']);
+            $game->setImage($dataGame['background_image']);
+            $game->setGenre($dataGame['genres'][0]['name']);
+            $gameRepository->save($game, true);
+        }
+
 
         return $this->render('catalogue/index.html.twig', [
-            'games' => $games
+            'games' => $dataGames
         ]);
     }
 
