@@ -4,20 +4,20 @@
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper text-center">
+	<div class="example-wrapper text-center text-light">
 		<h1>Hello
 			{{ controller_name }}! ✅</h1>
 
 		This friendly message is coming from:
-		<ul>
+		<ul class="text-light">
 			<li>Your controller at
 				<code>
-					<a href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a>
+					<a class="text-light" href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a>
 				</code>
 			</li>
 			<li>Your template at
 				<code>
-					<a href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a>
+					<a class="text-light" href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a>
 				</code>
 			</li>
 		</ul>
