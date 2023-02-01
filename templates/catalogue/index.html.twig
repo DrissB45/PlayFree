@@ -11,11 +11,11 @@
 		<div class="row gap-5 justify-content-center">
 			{% for game in games %}
 				<div class="col-sm-6 col-md-4 col-lg-2 card card-platform bg-dark">
-					<img class="img-responsive rounded h-50" src="{{ game.background_image }}" alt="Image de PC">
+					<img class="img-responsive rounded h-50" src="{{ game.image }}" alt="Image du jeu">
 					<div class="card-body d-flex flex-column justify-content-around ">
-						<h3 class="card-title text-center">{{game.name}}</h3>
-						<p>Genre : {{game.genres[0]['name']}}</p>
-						<p>Sortie : {{game.released}}</p>
+						<a href="{{ path('catalogue_show', {id: game.id}) }}" class="card-title text-center">{{game.title}}</a>
+						<p>Genre : {{game.genre}}</p>
+						<p>Sortie : </p>
 					</div>
 				</div>
 			{% endfor %}

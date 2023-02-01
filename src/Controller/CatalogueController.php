@@ -46,10 +46,17 @@ class CatalogueController extends AbstractController
             $game->setGenre($dataGame['genres'][0]['name']);
             $gameRepository->save($game, true);
         }
-
-
+        
         return $this->render('catalogue/index.html.twig', [
-            'games' => $dataGames
+            'games' => $gameRepository->findAll()
+        ]);
+    }
+    
+    #[Route('/{id}/voir', name: 'show')]
+    public function showGame(Game $game): Response
+    {
+        return $this->render('catalogue/show.html.twig', [
+          'game' => $game
         ]);
     }
 
@@ -71,8 +78,9 @@ class CatalogueController extends AbstractController
         // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
         /* var_dump($content); exit(); */
 
-        return $this->render('catalogue/index.html.twig', [
+        return $this->render('catalogue/consoles.html.twig', [
             'content' => $content
         ]);
     }
+
 }
