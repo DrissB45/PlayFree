@@ -44,11 +44,11 @@ class CatalogueController extends AbstractController
     public function booking(Game $game, Request $request, GameRepository $gameRepository, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
-        $taker = $this->getUser();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $taker = $this->getUser();
             $reservation->setTaker($taker);
             $reservation->setGame($game);
             $game->setIsReserved(true);

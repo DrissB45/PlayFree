@@ -11,3 +11,13 @@
 .card-show {
     border-radius: 5px;
 }
+
+.game-title {
+    font-family: $font-title;
+    text-decoration: none;
+    color: $light;
+}
+
+a:hover {
+    color: $secondary;
+}

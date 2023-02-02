@@ -6,16 +6,14 @@
 
 {% block body %}
 	<h1 class="hometitle text-center">Parcourez votre</h1>
-	<h1 class="hometitle text-secondary text-center">catalogue</h1>
+	<h1 class="hometitle text-secondary text-center mb-5">catalogue</h1>
 	<section class="container-fluid">
 		<div class="row gap-5 justify-content-center">
 			{% for game in games %}
-				<div class="col-sm-6 col-md-4 col-lg-2 card card-platform bg-dark">
-					<img class="img-responsive rounded h-50" src="{{ game.image }}" alt="Image du jeu">
+				<div class="col-sm-6 col-md-4 col-lg-2 card card-platform p-0 bg-dark">
+					<img class="img-responsive rounded-top h-75" src="{{ game.image }}" alt="Image du jeu">
 					<div class="card-body d-flex flex-column justify-content-around ">
-						<a href="{{ path('catalogue_show', {id: game.id}) }}" class="card-title text-center">{{game.title}}</a>
-						{# <p>Genre : {{game.genre}}</p> #}
-						<p>Sortie : </p>
+						<a href="{{ path('catalogue_show', {id: game.id}) }}" class="game-title text-center">{{game.title}}</a>
 					</div>
 				</div>
 			{% endfor %}

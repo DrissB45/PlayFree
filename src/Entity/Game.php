@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
@@ -27,6 +28,12 @@ class Game
 
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
+
+    #[ORM\Column]
+    private ?int $metacritic = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $sortie = null;
 
     /* #[ORM\ManyToOne(inversedBy: 'game')]
     #[ORM\JoinColumn(nullable: false)]
@@ -110,6 +117,30 @@ class Game
     public function setGenre(?string $genre): self
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getMetacritic(): ?int
+    {
+        return $this->metacritic;
+    }
+
+    public function setMetacritic(int $metacritic): self
+    {
+        $this->metacritic = $metacritic;
+
+        return $this;
+    }
+
+    public function getSortie(): ?string
+    {
+        return $this->sortie;
+    }
+
+    public function setSortie(string $sortie): self
+    {
+        $this->sortie = $sortie;
 
         return $this;
     }

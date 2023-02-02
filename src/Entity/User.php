@@ -37,22 +37,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\Column]
-    private ?bool $has_reserved = null;
-
-    #[ORM\Column]
-    private ?bool $has_given = null;
-
-    #[ORM\OneToMany(mappedBy: 'taker', targetEntity: Reservation::class)]
-    private Collection $borrowings;
-
-    #[ORM\OneToMany(mappedBy: 'lender', targetEntity: Reservation::class)]
-    private Collection $loans;
-
     public function __construct()
     {
-        $this->borrowings = new ArrayCollection();
-        $this->loans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,63 +135,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Borrowing>
-     */
-    public function getBorrowings(): Collection
-    {
-        return $this->borrowings;
-    }
-
-    public function addBorrowings(Reservation $borrowing): self
-    {
-        if (!$this->borrowings->contains($borrowing)) {
-            $this->borrowings->add($borrowing);
-            $borrowing->setTaker($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBorrowing(Reservation $borrowing): self
-    {
-        if ($this->borrowings->removeElement($borrowing)) {
-            // set the owning side to null (unless already changed)
-            if ($borrowing->getTaker() === $this) {
-                $borrowing->setTaker(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Loan>
-     */
-    public function getLoans(): Collection
-    {
-        return $this->loans;
-    }
-
-    public function addLoan(Reservation $loan): self
-    {
-        if (!$this->loans->contains($loan)) {
-            $this->loans->add($loan);
-            $loan->setLender($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLoan(Reservation $loan): self
-    {
-        if ($this->loans->removeElement($loan)) {
-            // set the owning side to null (unless already changed)
-            if ($loan->getLender() === $this) {
-                $loan->setLender(null);
-            }
-        }
-
-        return $this;
-    }
 }

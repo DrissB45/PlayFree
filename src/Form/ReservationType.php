@@ -17,7 +17,7 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('begin', DateTimeType::class, [
-                'label' => 'Date de début'
+                'label' => 'Date de début',
             ])
             ->add('end', DateTimeType::class, [
                 'label' => 'Date de fin'
