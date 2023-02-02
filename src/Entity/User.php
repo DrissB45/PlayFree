@@ -43,12 +43,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $has_given = null;
 
-    #[ORM\OneToMany(mappedBy: 'gamer', targetEntity: Reservation::class)]
-    private Collection $reservations;
+    #[ORM\OneToMany(mappedBy: 'taker', targetEntity: Reservation::class)]
+    private Collection $borrowings;
+
+    #[ORM\OneToMany(mappedBy: 'lender', targetEntity: Reservation::class)]
+    private Collection $loans;
 
     public function __construct()
     {
-        $this->reservations = new ArrayCollection();
+        $this->borrowings = new ArrayCollection();
+        $this->loans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,54 +149,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isHasReserved(): ?bool
-    {
-        return $this->has_reserved;
-    }
-
-    public function setHasReserved(bool $has_reserved): self
-    {
-        $this->has_reserved = $has_reserved;
-
-        return $this;
-    }
-
-    public function isHasGiven(): ?bool
-    {
-        return $this->has_given;
-    }
-
-    public function setHasGiven(bool $has_given): self
-    {
-        $this->has_given = $has_given;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Reservation>
+     * @return Collection<int, Borrowing>
      */
-    public function getReservations(): Collection
+    public function getBorrowings(): Collection
     {
-        return $this->reservations;
+        return $this->borrowings;
     }
 
-    public function addReservation(Reservation $reservation): self
+    public function addBorrowings(Reservation $borrowing): self
     {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations->add($reservation);
-            $reservation->setGamer($this);
+        if (!$this->borrowings->contains($borrowing)) {
+            $this->borrowings->add($borrowing);
+            $borrowing->setTaker($this);
         }
 
         return $this;
     }
 
-    public function removeReservation(Reservation $reservation): self
+    public function removeBorrowing(Reservation $borrowing): self
     {
-        if ($this->reservations->removeElement($reservation)) {
+        if ($this->borrowings->removeElement($borrowing)) {
             // set the owning side to null (unless already changed)
-            if ($reservation->getGamer() === $this) {
-                $reservation->setGamer(null);
+            if ($borrowing->getTaker() === $this) {
+                $borrowing->setTaker(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Loan>
+     */
+    public function getLoans(): Collection
+    {
+        return $this->loans;
+    }
+
+    public function addLoan(Reservation $loan): self
+    {
+        if (!$this->loans->contains($loan)) {
+            $this->loans->add($loan);
+            $loan->setLender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoan(Reservation $loan): self
+    {
+        if ($this->loans->removeElement($loan)) {
+            // set the owning side to null (unless already changed)
+            if ($loan->getLender() === $this) {
+                $loan->setLender(null);
             }
         }
 

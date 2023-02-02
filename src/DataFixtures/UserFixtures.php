@@ -19,8 +19,6 @@ class UserFixtures extends Fixture
         $user->setEmail('jinkazama@email.com');
         $user->setFirstName('Jin');
         $user->setLastName('Kazama');
-        $user->setHasReserved(false);
-        $user->setHasGiven(false);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'azerty'
@@ -32,8 +30,6 @@ class UserFixtures extends Fixture
         $admin->setEmail('boblennon@email.com');
         $admin->setFirstName('Bob');
         $admin->setLastName('Lennon');
-        $admin->setHasReserved(false);
-        $admin->setHasGiven(false);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
             'azerty'
