@@ -40,7 +40,7 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/reserver', name: 'book')]
+    #[Route('/{id}/reserver/', name: 'book')]
     public function booking(Game $game, Request $request, GameRepository $gameRepository, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
@@ -48,8 +48,8 @@ class CatalogueController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $taker = $this->getUser();
-            $reservation->setTaker($taker);
+            $gamer = $this->getUser();
+            $reservation->setGamer($gamer);
             $reservation->setGame($game);
             $game->setIsReserved(true);
             $reservationRepository->save($reservation, true);

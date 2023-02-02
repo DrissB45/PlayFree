@@ -27,19 +27,20 @@ class Reservation
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTaker(): ?User
+    public function getGamer(): ?User
     {
-        return $this->taker;
+        return $this->gamer;
     }
 
-    public function setTaker(?User $taker): self
+    public function setGamer(?User $gamer): self
     {
-        $this->taker = $taker;
+        $this->gamer = $gamer;
 
         return $this;
     }
@@ -76,18 +77,6 @@ class Reservation
     public function setEnd(\DateTimeInterface $end): self
     {
         $this->end = $end;
-
-        return $this;
-    }
-
-    public function getLender(): ?User
-    {
-        return $this->lender;
-    }
-
-    public function setLender(?User $lender): self
-    {
-        $this->lender = $lender;
 
         return $this;
     }
