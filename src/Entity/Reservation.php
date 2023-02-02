@@ -16,7 +16,7 @@ class Reservation
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $taker = null;
+    private ?User $gamer = null;
 
     #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -27,10 +27,6 @@ class Reservation
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end = null;
-
-    #[ORM\ManyToOne(inversedBy: 'loans')]
-    private ?User $lender = null;
-
     public function getId(): ?int
     {
         return $this->id;
