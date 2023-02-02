@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\GenreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use App\Entity\Game;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GenreRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: GenreRepository::class)]
+#[Vich\Uploadable]
 class Genre
 {
     #[ORM\Id]
@@ -20,6 +26,12 @@ class Genre
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'genres', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?Datetime $updatedAt = null;
 
     #[ORM\OneToMany(mappedBy: 'genre', targetEntity: Game::class)]
     private Collection $game;
@@ -55,6 +67,20 @@ class Genre
     {
         $this->image = $image;
 
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
         return $this;
     }
 

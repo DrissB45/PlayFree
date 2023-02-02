@@ -1,0 +1,11 @@
+easy_admin:
+    entities:
+        Genre:
+            # ...
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%genre_images%' }
+            # ...
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%genre_images%' }
