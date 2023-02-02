@@ -32,6 +32,7 @@ class InsertInDatabase
             $game->setTitle($dataGame['name']);
             $game->setImage($dataGame['background_image']);
             $game->setGenre($dataGame['genres'][0]['name']);
+            $game->setIsReserved(false);
             $this->gameRepository->save($game, true);
         }
         

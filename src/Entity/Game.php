@@ -22,6 +22,12 @@ class Game
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
+    #[ORM\Column]
+    private ?bool $is_reserved = null;
+
+    #[ORM\OneToOne(mappedBy: 'game', cascade: ['persist', 'remove'])]
+    private ?Reservation $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +65,35 @@ class Game
     public function setGenre(string $genre): self
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function isIsReserved(): ?bool
+    {
+        return $this->is_reserved;
+    }
+
+    public function setIsReserved(bool $is_reserved): self
+    {
+        $this->is_reserved = $is_reserved;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(Reservation $reservation): self
+    {
+        // set the owning side of the relation if necessary
+        if ($reservation->getGame() !== $this) {
+            $reservation->setGame($this);
+        }
+
+        $this->reservation = $reservation;
 
         return $this;
     }
