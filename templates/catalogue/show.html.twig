@@ -13,7 +13,7 @@
 				<div class="d-flex flex-column justify-content-around">
 					<p>Genre : {{game.genre}}</p>
 					<p>Sortie :</p>
-					<p>Réserver ?</p>
+					<a href="{{ path('catalogue_book', {id: game.id}) }}" class="fs-2">Réserver ?</a>
 				</div>
 			</div>
 		</div>

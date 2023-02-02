@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
@@ -20,6 +21,12 @@ class Reservation
     #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Game $game = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $begin = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $end = null;
 
     public function getId(): ?int
     {
@@ -46,6 +53,30 @@ class Reservation
     public function setGame(Game $game): self
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    public function getBegin(): ?\DateTimeInterface
+    {
+        return $this->begin;
+    }
+
+    public function setBegin(\DateTimeInterface $begin): self
+    {
+        $this->begin = $begin;
+
+        return $this;
+    }
+
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
 
         return $this;
     }
