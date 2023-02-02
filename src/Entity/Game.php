@@ -19,14 +19,15 @@ class Game
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $genre = null;
-
     #[ORM\Column]
     private ?bool $is_reserved = null;
 
     #[ORM\OneToOne(mappedBy: 'game', cascade: ['persist', 'remove'])]
     private ?Reservation $reservation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'game')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Genre $genre = null;
 
     public function getId(): ?int
     {
@@ -57,18 +58,6 @@ class Game
         return $this;
     }
 
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
     public function isIsReserved(): ?bool
     {
         return $this->is_reserved;
@@ -94,6 +83,18 @@ class Game
         }
 
         $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): self
+    {
+        $this->genre = $genre;
 
         return $this;
     }
