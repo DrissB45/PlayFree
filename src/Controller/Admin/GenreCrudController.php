@@ -28,7 +28,7 @@ class GenreCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title'),
-            TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+            TextField::new('imageFile')->setFormType(VichImageType::class),
             ImageField::new('image')->setBasePath('/images/genres')->onlyOnIndex()
         ];
     }
