@@ -87,7 +87,7 @@ class Genre
     /**
      * @return Collection<int, Game>
      */
-    /* public function getGame(): Collection
+    public function getGame(): Collection
     {
         return $this->game;
     }
@@ -112,5 +112,5 @@ class Genre
         }
 
         return $this;
-    } */
+    }
 }

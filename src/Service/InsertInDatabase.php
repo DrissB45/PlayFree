@@ -41,4 +41,20 @@ class InsertInDatabase
         return $this->gameRepository->findAll();
     }
 
+ /*    public function getGenre()
+    {
+        $response = $this->client->request(
+            'GET',
+            'https://api.rawg.io/api/games?key=' . self::API_KEY
+        );
+
+        $dataGames = $response->toArray()['results'];
+
+        foreach ($dataGames as $dataGame) {
+            $genre = $dataGame['genres'][0]['name']
+        }
+        
+        return $this->gameRepository->findAll();
+    } */
+
 }

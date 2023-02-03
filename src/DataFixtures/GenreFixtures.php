@@ -34,10 +34,12 @@ class GenreFixtures extends Fixture
             __DIR__ . '/../../public/images/genres/action.jpg'
         );
 
+
+
         foreach (self::GENRES as $genreTitle) {
             $genre = new Genre();
             $genre->setTitle($genreTitle);
-            $genre->setImage('action.jpg');
+            $genre->setImage('');
             $manager->persist($genre);
         }
 

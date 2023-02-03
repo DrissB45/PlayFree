@@ -5,10 +5,12 @@ namespace App\Controller;
 use GMP;
 use LDAP\Result;
 use App\Entity\Game;
+use App\Entity\Genre;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Service\InsertInDatabase;
 use App\Repository\GameRepository;
+use App\Repository\GenreRepository;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,6 +72,27 @@ class CatalogueController extends AbstractController
 
         return $this->render('catalogue/voirbooking.html.twig', [
             'reservation' => $reservation
+        ]);
+    }
+
+    #[Route('/genres', name: 'genres')]
+    public function genres(GenreRepository $genreRepository): Response
+    {
+        $genres = $genreRepository->findAll();
+
+        return $this->render('catalogue/genres.html.twig', [
+            'genres' => $genres
+        ]);
+    }
+
+    #[Route('/genres/{id}', name: 'voirpargenres')]
+    public function voirParGenres(Genre $genre, GameRepository $gameRepository): Response
+    {
+        $games = $gameRepository->findBy(['genre' => $genre->getTitle()]);
+        
+        return $this->render('catalogue/voirpargenres.html.twig', [
+            'games' => $games,
+            'genre' => $genre
         ]);
     }
 

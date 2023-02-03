@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="hometitle text-center mt-4">Parcourez votre</h1>
-	<h1 class="hometitle text-secondary text-center mb-5">catalogue</h1>
-	<a href="{{ path('catalogue_genres') }}" class="game-title text-dark btn btn-secondary btn-lg ms-5 mb-5">Voir par genres</a>
+	<h1 class="hometitle text-center mt-4">Nos jeux du genre :</h1>
+	<h1 class="hometitle text-secondary text-center mb-5">{{ genre.title }}</h1>
 	<section class="container-fluid mb-5">
 		<div class="row gap-5 justify-content-center">
 			{% for game in games %}

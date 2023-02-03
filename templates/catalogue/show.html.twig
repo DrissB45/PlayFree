@@ -12,7 +12,7 @@
 				<img class="img-responsive rounded" src="{{ game.image }}" alt="Image du jeu">
 				<div class="d-flex flex-column justify-content-around mt-3">
 					<p>Genre : {{game.genre}}</p>
-					<p>Sortie : {{game.sortie}}</p>
+					<p>Sortie : {{game.sortie|date('d-m-Y')}}</p>
 					<span class="note mb-3">Metacritic : {{game.metacritic}} / 100</span>
 					{% if game.isreserved == true %}
 					<p class="reserved text-center fs-2 mt-3 mb-4">Jeu réservé !</p>
