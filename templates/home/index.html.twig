@@ -1,26 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper text-center">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
-
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ '/home/vgillet/Symfony-initialized/base_project_bootstrap/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a>
-				</code>
-			</li>
-		</ul>
-		<a href="{{ path("app_logout") }}">Disconnect</a>
-	</div>
+	<section class="container-fluid h-100 mt-md-5 mt-3">
+		<div class="row h-100 flex-column flex-md-row justify-content-center align-items-center">
+			<div class="col-md-6 col-12 d-flex flex-column justify-content-center align-items-center text-light">
+				<h1 class="hometitle text-center">Bienvenue sur</h1>
+				<h1 class="hometitle text-secondary">PlayFree !</h1>
+				<p class="subtitle fs-3 text-center my-4">Ici, la solidarité entre gamers prend tout son sens.</p>
+				<p>Tu cherches un jeu ? Parcours le catalogue et réserve-le !</p>
+			</div>
+			<div class="col-6 d-flex justify-content-center align-items-center mb-4">
+				<img src="{{ asset('build/images/gaming.jpg') }}" alt="Image de joueur">
+			</div>
+		</div>
+	</section>
 {% endblock %}

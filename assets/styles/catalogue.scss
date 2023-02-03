@@ -1,0 +1,33 @@
+@import "_theme";
+
+.hometitle, .subtitle {
+    font-family: $font-title;
+}
+
+.card-platform {
+    height: 20rem;
+}
+
+.card-show {
+    border-radius: 5px;
+}
+
+.game-title {
+    font-family: $font-title;
+    text-decoration: none;
+    color: $light;
+}
+
+.game-title:hover {
+    color: $secondary;
+}
+
+
+a:hover {
+    color: $secondary;
+}
+
+.reserved {
+    font-family: $font-title;
+    color: $secondary;
+}

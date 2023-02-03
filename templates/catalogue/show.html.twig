@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('catalogue') }}
+{% endblock %}
+
+{% block body %}
+	<section class="container-fluid mt-5">
+		<div class="row gap-5 justify-content-center">
+			<div class="col-10 col-md-4 col-lg-3 card card-show bg-dark">
+				<h3 class="hometitle text-center mt-2 mb-4 pt-3 fs-4">{{game.title}}</h3>
+				<img class="img-responsive rounded" src="{{ game.image }}" alt="Image du jeu">
+				<div class="d-flex flex-column justify-content-around mt-3">
+					<p>Genre : {{game.genre}}</p>
+					<p>Sortie : {{game.sortie|date('d-m-Y')}}</p>
+					<span class="note mb-3">Metacritic : {{game.metacritic}} / 100</span>
+					{% if game.isreserved == true %}
+					<p class="reserved text-center fs-2 mt-3 mb-4">Jeu réservé !</p>
+					{% else %}
+					<a href="{{ path('catalogue_book', {id: game.id}) }}" class="btn btn-lg btn-secondary game-title text-dark mb-3">Réserver ?</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

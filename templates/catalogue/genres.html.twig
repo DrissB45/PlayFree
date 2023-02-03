@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('catalogue') }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="hometitle text-center mt-4">Parcourez les</h1>
+	<h1 class="hometitle text-secondary text-center mb-5">genres</h1>
+	<section class="container-fluid">
+		<div class="row gap-5 justify-content-center">
+			{% for genre in genres %}
+				<div class="col-11 col-md-4 col-lg-2 card card-platform p-0 bg-dark">
+					<img class="img-responsive rounded h-75" src="{{ vich_uploader_asset(genre) }}" alt="{{ genre.title }}">
+					<div class="card-body d-flex flex-column justify-content-around ">
+						<a href="{{ path('catalogue_voirpargenres', {id: genre.id}) }}" class="game-title text-center">{{genre.title}}</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div></section>{% endblock %}

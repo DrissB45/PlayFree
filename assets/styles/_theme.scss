@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Russo+One&display=swap');
+
+@font-face {
+    font-family: 'font-logo';
+    src: url('./fonts/font-logo.ttf') format('truetype'),
+}
+$font-title: 'Russo One', sans-serif;
+$font-body:'Lato', sans-serif;
+$font-size: 1.3rem;
+
+$primary: #0B091D;
+$secondary: #2DF0BB;
+$white: #FAFAFA;
+
+
+@import "~bootstrap/scss/bootstrap";
+
+.logo {
+    font-family: 'font-logo';
+}
+
+body {
+    background-color: $primary;
+    color: $white;
+    font-size: $font-size;
+    font-family: $font-body;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: 'font-logo';
+}
