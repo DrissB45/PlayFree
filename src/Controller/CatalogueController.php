@@ -72,27 +72,5 @@ class CatalogueController extends AbstractController
             'reservation' => $reservation
         ]);
     }
+
 }
-
-
-    /* #[Route('/consoles', name: 'consoles')]
-    public function consoles(): Response
-    {
-        $response = $this->client->request(
-            'GET',
-            'https://api.rawg.io/api/platforms?key=' . self::API_KEY
-        );
-
-        $statusCode = $response->getStatusCode();
-        // $statusCode = 200
-        $contentType = $response->getHeaders()['content-type'][0];
-        // $contentType = 'application/json'
-        $content = $response->getContent();
-        // $content = '{"id":521583, "name":"symfony-docs", ...}'
-        $content = $response->toArray()['results'];
-        // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
-        /* var_dump($content); exit(); */
-
-        /* return $this->render('catalogue/consoles.html.twig', [
-            'content' => $content
-        ]); */
