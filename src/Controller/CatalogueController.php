@@ -44,11 +44,11 @@ class CatalogueController extends AbstractController
     public function booking(Game $game, Request $request, GameRepository $gameRepository, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
+        $gamer = $this->getUser();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $gamer = $this->getUser();
             $reservation->setGamer($gamer);
             $reservation->setGame($game);
             $game->setIsReserved(true);
@@ -60,6 +60,16 @@ class CatalogueController extends AbstractController
         return $this->render('catalogue/booking.html.twig', [
             'game' => $game,
             'form' => $form
+        ]);
+    }
+
+    #[Route('/mes-reservations', name: 'voirbookings')]
+    public function voirBooking(ReservationRepository $reservationRepository): Response
+    {
+        $reservation = $reservationRepository->findOneBy(['gamer' => $this->getUser()]);
+
+        return $this->render('catalogue/voirbooking.html.twig', [
+            'reservation' => $reservation
         ]);
     }
 }

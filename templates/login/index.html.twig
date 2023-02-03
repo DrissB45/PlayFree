@@ -7,32 +7,38 @@
 	{{ encore_entry_link_tags('register') }}
 {% endblock %}
 
-{% block navbar %}
-{% endblock %}
+{% block navbar %}{% endblock %}
 
 {% block body %}
 	{% if error %}
 		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
 
-	<div class="container-fluid">
+	<div class="container-fluid mt-5">
 		<div class="block-registration">
-			<div class="registration-form bg-dark m-auto mb-3 col-lg-3">
+			<div class="registration-form bg-dark m-auto mb-3 col-11 col-lg-3">
 				<h3 class="title text-center mt-4 mb-4 pt-3 fs-4">CONNECTEZ-VOUS</h3>
 				<form action="{{ path('app_login') }}" method="post">
-					<label for="username">Email:
-					</label>
-					<input type="text" id="username" name="_username" value="{{ last_username }}">
-					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="_password">
-                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<div class="my-3 col-10 m-auto fs-5">
+						<label for="username" class="form-label">Adresse e-mail</label>
+						<input type="text" id="username" name="_username" value="{{ last_username }}">
+					</div>
+					<div class="my-3 col-10 m-auto fs-5">
+						<label for="password" class="form-label">Mot de passe</label>
+						<input type="password" id="password" name="_password">
+					</div>
+					<div class="my-3 col-10 m-auto fs-5">
+						<input
+						type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-					{# If you want to control the URL the user is redirected to on success
-												        <input type="hidden" name="_target_path" value="/account"> #}
+						{# If you want to control the URL the user is redirected to on success
+																									        <input type="hidden" name="_target_path" value="/account"> #}
 
-					<button type="submit">Connexion</button>
-				</form>
+						<div class="my-3 col-10 m-auto d-flex justify-content-center">
+							<button type="submit" class="btn btn-secondary col-10 mt-5 mb-4 fs-5 p-1">Connexion</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}
