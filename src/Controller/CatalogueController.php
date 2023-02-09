@@ -43,7 +43,7 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/{id}/reserver/', name: 'book')]
-    public function booking(Game $game, Request $request, GameRepository $gameRepository, ReservationRepository $reservationRepository): Response
+    public function bookGame(Game $game, Request $request, GameRepository $gameRepository, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
         $gamer = $this->getUser();
@@ -65,18 +65,8 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/mes-reservations', name: 'voirbookings')]
-    public function voirBooking(ReservationRepository $reservationRepository): Response
-    {
-        $reservation = $reservationRepository->findOneBy(['gamer' => $this->getUser()]);
-
-        return $this->render('catalogue/voirbooking.html.twig', [
-            'reservation' => $reservation
-        ]);
-    }
-
     #[Route('/genres', name: 'genres')]
-    public function genres(GenreRepository $genreRepository): Response
+    public function genreIndex(GenreRepository $genreRepository): Response
     {
         $genres = $genreRepository->findAll();
 
@@ -85,8 +75,8 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/genres/{id}', name: 'voirpargenres')]
-    public function voirParGenres(Genre $genre, GameRepository $gameRepository): Response
+    #[Route('/genres/{id}', name: 'genres_show')]
+    public function genreShow(Genre $genre, GameRepository $gameRepository): Response
     {
         $games = $gameRepository->findBy(['genre' => $genre->getTitle()]);
         
