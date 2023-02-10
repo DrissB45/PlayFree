@@ -1,6 +1,4 @@
-# base_bootstrap_project
-
-This template is made for a quick start for projects made in symfony 6 with the use of Bootstrap and Webpack Encore.
+48-hour project realized at Wild Code School.
 
 ## Installation
 
