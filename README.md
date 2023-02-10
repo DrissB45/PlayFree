@@ -1,4 +1,8 @@
-48-hour project realized at Wild Code School.
+# Blue Line
+
+## Presentation
+
+PlayFree is an individual 48-hour free-subject project realized at Wild Code School.
 
 ## Installation
 
